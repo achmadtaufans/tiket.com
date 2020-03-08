@@ -27,15 +27,19 @@ class MainPresenter(initView: DefaultView.InitView) : DefaultView.GetUsers {
             onSuccess = { response ->
                 initView.hideLoading()
 
-                initView.userList(response.body()?.getItems() as MutableList<ItemList>?)
-
                 val totalCount = response.body()?.getTotalCount()
-                if (response.body()!!.getItems() == null || totalCount == 0) {
+                if (response.body() == null || totalCount == 0) {
                     initView.userListFailure(
                         "No Result for '$keyword'",
                         "Try Searching for Other Users"
                     )
+                } else {
+                    initView.userList(response.body()?.getItems() as MutableList<ItemList>?)
                 }
+            }
+
+            onFailure = { response ->
+                initView.hideLoading()
             }
         }
     }
