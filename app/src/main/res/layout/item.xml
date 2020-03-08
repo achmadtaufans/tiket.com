@@ -14,7 +14,6 @@
     android:focusable="true">
 
     <ImageView
-        app:srcCompat="@drawable/ic_github"
         android:id="@+id/avatar"
         android:layout_width="50dp"
         android:layout_height="50dp" />
